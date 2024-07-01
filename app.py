@@ -14,9 +14,10 @@ app.config['SQLALCHEMY_SILENCE_UBER_WARNING'] = 1
 db.init_app(app)
 
 
-@app.before_first_request
-def create_all():
+
+with app.app_context():
     db.create_all()
+
 
 
 @app.route('/', methods=['GET'])
